@@ -1,7 +1,7 @@
 var request = require('superagent');
 
 module.exports = {
-    regex: /^!urban (.+?)\s?(\d+)?/,
+    regex: /^!urban (\S+)\s?(\d+)?/,
     help: '**!urban someterm** does an urban dictionary lookup for someterm. **!urban someterm %23** gets the %23th definition.',
     run: function(data, bot){
         var parse = data.message.match(this.regex),
