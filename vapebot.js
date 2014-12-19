@@ -49,7 +49,9 @@ bot.refreshCommands = function(){
         forEach(function(file){
             var cmd = file.match(/(.+)\.js/);
             if(cmd)
-                bot.commands[cmd[1]] = require('./commands/' + cmd[0]);
+                bot.commands[cmd[1]] = cmd = require('./commands/' + cmd[0]);
+            if(cmd && cmd.init)
+                cmd.init();
         });
 };
 bot.refreshCommands();

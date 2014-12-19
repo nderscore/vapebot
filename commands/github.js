@@ -4,4 +4,4 @@ module.exports = {
     run: function(data, bot){
         bot.chatBack(data, 'You can find my source code here: https://github.com/nderscore/vapebot');
     }
-}
+};
