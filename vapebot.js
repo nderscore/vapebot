@@ -51,7 +51,7 @@ bot.refreshCommands = function(){
             if(cmd)
                 bot.commands[cmd[1]] = cmd = require('./commands/' + cmd[0]);
             if(cmd && cmd.init)
-                cmd.init();
+                cmd.init(bot);
         });
 };
 bot.refreshCommands();
