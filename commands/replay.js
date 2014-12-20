@@ -26,7 +26,7 @@ var queue = (function () {
         for (var i = 0; i < n && i < array.length; i++) {
             temp.push(array[i]);
         }
-        return temp.reverse(); //return last element at array[0]
+        return temp; //return last element at array[0]
     }
 
     return {
@@ -37,14 +37,16 @@ var queue = (function () {
 })();
 
 module.exports = {
-    regex: /^!replay|^!replay (\d*)/,
+    regex: /^!replay ?(\d*)/,
     help: 'Replay the last [n] lines, or ' + DEFAULT_RETURN + ' by default, of chat',
     run: function (data, bot) {
         var args = data.message.match(this.regex)
-        var n = (typeof args[1] === 'undefined' ? DEFAULT_RETURN : args[1]);
+        var n = (typeof args[1] === 'undefined' ? DEFAULT_RETURN : args[1]--); //subtract 1 from value because arrays
         var messages = queue.head(n);
-        for(var i = 0; i < messages.length; i++){
-            bot.pm(data.user, messages[i].username + ": " + messages[i].message);
+        for (var i = 0; i < messages.length; i++) {
+            setTimeout(function (a, b) {
+                bot.pm(a, b);
+            }, 200 * i, data.username, messages[i].username + ": " + messages[i].message);
         }
     },
     init: function (bot) {
