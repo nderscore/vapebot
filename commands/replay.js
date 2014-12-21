@@ -21,7 +21,7 @@ var queue = (function () {
      * @return {Array} messages
      */
     function head(n) {
-        if (typeof n === 'undefined') { n = DEFAULT_RETURN; }
+        if (n === '' || typeof n === 'undefined') { n = DEFAULT_RETURN; }
 
         var temp = [];
         for (var i = array.length - 1; (array.length - i) <= n && i >= 0; i--) {
@@ -42,8 +42,7 @@ module.exports = {
     help: 'Replay the last [n] lines, or ' + DEFAULT_RETURN + ' by default, of chat',
     run: function (data, bot) {
         var args = data.message.match(this.regex);
-        var n = (args[1] === '' ? DEFAULT_RETURN : args[1]);
-        var messages = queue.head(n);
+        var messages = queue.head(args[1]);
         for (var i = 0; i < messages.length; i++) {
             //delay messages to prevent out of order async bot.pm calls
             setTimeout(function (a, b) {
