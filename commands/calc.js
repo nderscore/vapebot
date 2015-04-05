@@ -1,6 +1,6 @@
 // ohms law calculator
 module.exports = { 
-    regex: /^!calc (\d*\.?\d*)(w|a|o|v|W|A|O|V)\D*(\d*\.?\d*)(w|a|o|v|W|A|O|V)/,
+    regex: /^!calc (\d*\.?\d*)(w|a|o|v|W|A|O|V)[A-Za-z ]*(\d*\.?\d*)(w|a|o|v|W|A|O|V)/,
     help: '**!calc X X** performs ohms law calculations. ' +
           '**X**\'s can be replaced with any volt, ohm, watt, or amp value. Examples: ' +
           '**!calc 4.2v 1.6o !calc 10a 6v !calc 8w .6o**',
